@@ -97,7 +97,9 @@
             "default_check": true,
             "description": "PC端进入游戏，需先手动打开游戏",
             "controller": [
-                "Win32"
+                "Win32",
+                "Win32-Window",
+                "Win32-Front"
             ]
         },
         {
@@ -138,7 +140,9 @@
                 "AutoTaskInterval"
             ],
             "controller": [
-                "Win32"
+                "Win32",
+                "Win32-Window",
+                "Win32-Front"
             ]
         }
     ],
