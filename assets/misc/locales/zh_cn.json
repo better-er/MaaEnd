@@ -63,5 +63,7 @@
     "task.ClaimSimulationRewards.label": "📦自动领取模拟空间奖励",
     "task.ClaimSimulationRewards.description": "请在模拟空间菜单内启动",
     "task.ClaimSimulationRewards.error_not_found": "未检测到[模拟空间]界面，请手动切换",
-    "task.ClaimSimulationRewards.success_finished": "模拟空间奖励领取完毕"
+    "task.ClaimSimulationRewards.success_finished": "模拟空间奖励领取完毕",
+    "task.AutomaticCharacterTutorial.label": "🎓自动干员教程",
+    "task.AutomaticCharacterTutorial.description": "自动完成干员教学关卡（支持战技与终结技教学），**请在干员教学主界面开始任务**\n- 部分干员教学对释放时机有要求，需要接管。"
 }

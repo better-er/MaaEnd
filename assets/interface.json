@@ -205,9 +205,9 @@
         },
         {
             "name": "AutomaticCharacterTutorial",
-            "label": "Automatic Character Tutorial",
+            "label": "$task.AutomaticCharacterTutorial.label",
             "entry": "AutomaticCharacterTutorial",
-            "description": "Runs the automatic character tutorial pipeline",
+            "description": "$task.AutomaticCharacterTutorial.description",
             "controller": [
                 "Win32",
                 "Win32-Window",
