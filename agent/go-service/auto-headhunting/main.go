@@ -99,7 +99,7 @@ func (a *AutoHeadhunting) Run(ctx *maa.Context, arg *maa.CustomActionArg) bool {
 
 				if len(details.Results.Best) == 0 {
 					log.Warn().Msg("[AutoHeadhunting] No OCR result detected. Retrying...")
-					time.Sleep(300 * time.Millisecond)
+					time.Sleep(500 * time.Millisecond)
 					continue
 				}
 
@@ -114,16 +114,18 @@ func (a *AutoHeadhunting) Run(ctx *maa.Context, arg *maa.CustomActionArg) bool {
 				break
 			}
 
-		}
-
-		ExitEntry := "AutoHeadhunting:Close"
-		if mode == 1 {
-			ExitEntry = "AutoHeadhunting:Done"
-			_, err := ctx.RunTask("AutoHeadhunting:QuitDetails")
+			// 下一个干员
+			_, err := ctx.RunTask("AutoHeadhunting:NextOperator")
 			if err != nil {
 				log.Err(err).Msg("[AutoHeadhunting] Failed to close results")
 				return false
 			}
+		}
+
+		// 退出抽卡界面
+		ExitEntry := "AutoHeadhunting:Close"
+		if mode == 1 {
+			ExitEntry = "AutoHeadhunting:Done"
 		}
 
 		_, err := ctx.RunTask(ExitEntry)
@@ -132,12 +134,14 @@ func (a *AutoHeadhunting) Run(ctx *maa.Context, arg *maa.CustomActionArg) bool {
 			return false
 		}
 
+		// 记录抽卡结果
 		log.Info().Msgf("[AutoHeadhunting] Pull results: %v", ans)
 		for _, name := range ans {
 			if name == params.TargetOperator {
 				targetCount++
 				log.Info().Msgf("[AutoHeadhunting] Found target operator: %s (count: %d)", name, targetCount)
 			}
+
 		}
 	}
 

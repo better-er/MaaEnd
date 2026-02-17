@@ -3,10 +3,10 @@
         "action": "Custom",
         "custom_action": "AutoHeadhunting",
         "custom_action_param": {
-            "TargetPulls": 0,
+            "TargetPulls": 10,
             "TargetOperator": "",
-            "TargetOperatorNum": 0,
-            "PreferMode": 1
+            "TargetOperatorNum": 1,
+            "PreferMode": 10
         }
     },
     "AutoHeadhunting:Click10x": {
@@ -77,14 +77,7 @@
         "post_delay": 500,
         "action": "Click"
     },
-    "AutoHeadhunting:SkipStars": {
-        "next": [
-            "AutoHeadhunting:DetectedArsenalTicket",
-            "AutoHeadhunting:SS_UndetectedArsenalTicket"
-        ],
-        "post_delay": 100,
-        "pre_delay": 200
-    },
+
     "AutoHeadhunting:DetectedArsenalTicket": {
         "recognition": "TemplateMatch",
         "roi": [
@@ -127,15 +120,54 @@
         "next": ["AutoHeadhunting:SkipStars"]
     },
 
-    "AutoHeadhunting:QuitDetails": {
+    "AutoHeadhunting:NextOperator": {
         "next": [
-            "AutoHeadhunting:QD_DetectedArsenalTicket",
+            "AutoHeadhunting:Next_DetectedArsenalTicket",
             "AutoHeadhunting:UndetectedArsenalTicket"
         ],
-        "post_delay": 100,
+        "post_delay": 400,
         "pre_delay": 200
     },
-    "AutoHeadhunting:QD_DetectedArsenalTicket": {
+
+    "AutoHeadhunting:Close": {
+        "recognition": "TemplateMatch",
+        "template": ["AutoHeadhunting/close.png"],
+        "roi": [
+            1200,
+            0,
+            80,
+            70
+        ],
+        "green_mask": true,
+        "post_delay": 1500,
+        "action": "Click",
+        "next": [
+            "AutoHeadhunting:Done",
+            "AutoHeadhunting:Close"
+        ]
+    },
+    "AutoHeadhunting:Done": {
+        "recognition": "TemplateMatch",
+        "template": ["AutoHeadhunting/done.png"],
+        "roi": [
+            623,
+            648,
+            34,
+            34
+        ],
+        "green_mask": true,
+        "post_delay": 800,
+        "action": "Click"
+    },
+    "AutoHeadhunting:SkipStars": {
+        "next": [
+            "AutoHeadhunting:DetectedArsenalTicket",
+            "AutoHeadhunting:SS_UndetectedArsenalTicket"
+        ],
+        "post_delay": 400,
+        "pre_delay": 200
+    },
+    "AutoHeadhunting:Next_DetectedArsenalTicket": {
         "recognition": "TemplateMatch",
         "roi": [
             12,
@@ -151,35 +183,7 @@
             304,
             199
         ],
-        "next": ["AutoHeadhunting:QuitDetails"]
-    },
-    "AutoHeadhunting:Close": {
-        "recognition": "TemplateMatch",
-        "template": ["AutoHeadhunting/close.png"],
-        "roi": [
-            1200,
-            0,
-            80,
-            70
-        ],
-        "green_mask": true,
-        "post_delay": 1500,
-        "next": [
-            "AutoHeadhunting:Done"
-        ]
-    },
-    "AutoHeadhunting:Done": {
-        "recognition": "TemplateMatch",
-        "template": ["AutoHeadhunting/done.png"],
-        "roi": [
-            623,
-            648,
-            34,
-            34
-        ],
-        "green_mask": true,
-        "post_delay": 800,
-        "action": "Click"
+        "next": ["AutoHeadhunting:NextOperator"]
     },
     "AutoHeadhunting:DetectOperatorName": {
         "recognition": "OCR",
@@ -212,8 +216,13 @@
             "埃特拉",
             "安塔尔",
             "秋栗",
-            "萤石",
-            ".*"
+            "萤石"
+        ],
+        "replace": [
+            [
+                "陈干语",
+                "陈千语"
+            ]
         ],
         "timeout": 3000
     }
