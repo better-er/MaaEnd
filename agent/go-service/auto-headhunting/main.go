@@ -18,6 +18,7 @@ func (a *Init) Run(ctx *maa.Context, arg *maa.CustomActionArg) bool {
 
 func (a *AutoHeadhunting) Run(ctx *maa.Context, arg *maa.CustomActionArg) bool {
 	var params struct {
+		Language          string // 语言
 		TargetPulls       int    // 最多消耗的抽数
 		TargetOperator    string // 抽到目标干员后停止
 		TargetOperatorNum int    // 抽到目标干员达到该数量后停止
@@ -40,6 +41,9 @@ func (a *AutoHeadhunting) Run(ctx *maa.Context, arg *maa.CustomActionArg) bool {
 		return false
 	}
 
+	lang = params.Language
+
+	stopping := false
 	usedPulls := 0
 	targetCount := 0
 	const MAX_OCR_RETRIES = 10
@@ -59,7 +63,8 @@ func (a *AutoHeadhunting) Run(ctx *maa.Context, arg *maa.CustomActionArg) bool {
 	for usedPulls < params.TargetPulls && targetCount < params.TargetOperatorNum {
 		if tasker.Stopping() {
 			log.Info().Msg("[AutoHeadhunting] Stopping task...")
-			return true
+			stopping = true
+			break
 		}
 
 		mode := params.PreferMode
@@ -105,7 +110,8 @@ func (a *AutoHeadhunting) Run(ctx *maa.Context, arg *maa.CustomActionArg) bool {
 		for range mode {
 			if tasker.Stopping() {
 				log.Info().Msg("[AutoHeadhunting] Stopping task...")
-				return true
+				stopping = true
+				break
 			}
 
 			// 通过检测武库配额图标以跳过星级动画
@@ -148,6 +154,9 @@ func (a *AutoHeadhunting) Run(ctx *maa.Context, arg *maa.CustomActionArg) bool {
 				return false
 			}
 		}
+		if stopping {
+			break
+		}
 
 		// 退出抽卡界面
 		ExitEntry := "AutoHeadhunting:Close"
@@ -164,20 +173,27 @@ func (a *AutoHeadhunting) Run(ctx *maa.Context, arg *maa.CustomActionArg) bool {
 		ans_mp := make(map[string]int)
 		for _, name := range ans {
 			ans_mp[name]++
-			if name == params.TargetOperator {
+			// 寻找目标干员
+			if t(name) == params.TargetOperator {
 				targetCount++
 				log.Info().Msgf("[AutoHeadhunting] Found target operator: %s (count: %d)", name, targetCount)
 			}
 
 		}
+		ans_mp_str := make([]string, 0)
 		ans_str := make([]string, 0)
+		ans_str = append(ans_str, fmt.Sprintf("%s %d/%d:", t("used_pulls"), usedPulls, params.TargetPulls)+"\n")
 		for name, count := range ans_mp {
-			ans_str = append(ans_str, fmt.Sprintf("%s: %d", name, count))
+			ans_mp_str = append(ans_mp_str, fmt.Sprintf("%s: %d", name, count))
+			ans_str = append(ans_str, fmt.Sprintf("%s: %d", name, count)+"\n")
 		}
-		log.Info().Msgf("[AutoHeadhunting] Results: %s", ans_str)
+
+		fmt.Printf("%s", ans_str)
+		log.Info().Msgf("[AutoHeadhunting] Results: %s", ans_mp_str)
 		log.Info().Msgf("[AutoHeadhunting] Used pulls: %d /  %d", usedPulls, params.TargetPulls)
 	}
 
-	log.Info().Msgf("[AutoHeadhunting] Finished with %d pulls, found %d target operators", usedPulls, targetCount)
+	fmt.Printf(t("done"), usedPulls, targetCount, params.TargetOperator)
+	log.Info().Msgf("[AutoHeadhunting] Finished with %d pulls, found %d target operators (%s)", usedPulls, targetCount, params.TargetOperator)
 	return true
 }
