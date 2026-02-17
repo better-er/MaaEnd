@@ -1,0 +1,83 @@
+{
+    "AutoHeadhunting:Click10x": {
+        "recognition": "TemplateMatch",
+        "template": ["AutoHeadhunting/10x.png"],
+        "roi": [
+            1035,
+            622,
+            99,
+            80
+        ],
+        "action": "Click"
+    },
+    "AutoHeadhunting:Click1x": {
+        "recognition": "TemplateMatch",
+        "template": ["AutoHeadhunting/1x.png"],
+        "roi": [
+            808,
+            614,
+            119,
+            91
+        ],
+        "action": "Click"
+    },
+    "AutoHeadhunting:ClickConfirm": {
+        "recognition": "OCR",
+        "expected": ["确认"],
+        "roi": [
+            644,
+            424,
+            236,
+            89
+        ],
+        "action": "Click"
+    },
+    "AutoHeadhunting:Skip": {
+        "recognition": "TemplateMatch",
+        "template": ["AutoHeadhunting/skip.png"],
+        "roi": [
+            1196,
+            0,
+            74,
+            70
+        ],
+        "action": "Click"
+    },
+    "AutoHeadhunting:DetectOperatorName": {
+        "recognition": "OCR",
+        "roi": [
+            771,
+            430,
+            343,
+            146
+        ],
+        "replace": [
+            [
+                "陈干语",
+                "陈千语"
+            ]
+        ]
+    },
+    "AutoHeadhunting:DetectHeadhuntingEnd": {
+        "action": "Click",
+        "target": [
+            169,
+            338,
+            293,
+            176
+        ],
+        "post_delay": 0,
+        "pre_delay": 0
+    },
+    "AutoHeadhunting:Close": {
+        "recognition": "TemplateMatch",
+        "template": ["AutoHeadhunting/close.png"],
+        "roi": [
+            1200,
+            0,
+            80,
+            70
+        ],
+        "green_mask": true
+    }
+}
