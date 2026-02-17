@@ -29,7 +29,7 @@
                     "description": "$option.TargetPulls.inputs.TargetPulls.description",
                     "pipeline_type": "int",
                     "verify": "^\\d+$",
-                    "default": 0
+                    "default": "0"
                 }
             ],
             "pipeline_override": {
@@ -78,7 +78,7 @@
                     "description": "$option.TargetOperatorNum.inputs.TargetOperatorNum.description",
                     "pipeline_type": "int",
                     "verify": "^\\d+$",
-                    "default": 1
+                    "default": "1"
                 }
             ],
             "pipeline_override": {
