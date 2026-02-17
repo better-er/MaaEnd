@@ -1,4 +1,14 @@
 {
+    "AutoHeadhunting": {
+        "action": "Custom",
+        "custom_action": "AutoHeadhunting",
+        "custom_action_param": {
+            "TargetPulls": 0,
+            "TargetOperator": "",
+            "TargetOperatorNum": 0,
+            "PreferMode": 1
+        }
+    },
     "AutoHeadhunting:Click10x": {
         "recognition": "TemplateMatch",
         "template": ["AutoHeadhunting/10x.png"],
@@ -8,7 +18,10 @@
             99,
             80
         ],
-        "action": "Click"
+        "action": "Click",
+        "next": [
+            "AutoHeadhunting:Confirm"
+        ]
     },
     "AutoHeadhunting:Click1x": {
         "recognition": "TemplateMatch",
@@ -19,9 +32,12 @@
             119,
             91
         ],
-        "action": "Click"
+        "action": "Click",
+        "next": [
+            "AutoHeadhunting:Confirm"
+        ]
     },
-    "AutoHeadhunting:ClickConfirm": {
+    "AutoHeadhunting:Confirm": {
         "recognition": "OCR",
         "expected": ["确认"],
         "roi": [
@@ -30,9 +46,12 @@
             236,
             89
         ],
-        "action": "Click"
+        "action": "Click",
+        "post_delay": 2000,
+        "next": ["AutoHeadhunting:Skip1"]
     },
-    "AutoHeadhunting:Skip": {
+    "AutoHeadhunting:Skip1": {
+        // 跳过拉杆动画
         "recognition": "TemplateMatch",
         "template": ["AutoHeadhunting/skip.png"],
         "roi": [
@@ -41,33 +60,98 @@
             74,
             70
         ],
+        "action": "Click",
+        "post_delay": 500,
+        "next": ["AutoHeadhunting:Skip2"]
+    },
+    "AutoHeadhunting:Skip2": {
+        // 跳过降落动画
+        "recognition": "TemplateMatch",
+        "template": ["AutoHeadhunting/skip.png"],
+        "roi": [
+            1196,
+            0,
+            74,
+            70
+        ],
+        "post_delay": 500,
         "action": "Click"
     },
-    "AutoHeadhunting:DetectOperatorName": {
-        "recognition": "OCR",
-        "roi": [
-            771,
-            430,
-            343,
-            146
+    "AutoHeadhunting:SkipStars": {
+        "next": [
+            "AutoHeadhunting:DetectedArsenalTicket",
+            "AutoHeadhunting:SS_UndetectedArsenalTicket"
         ],
-        "replace": [
-            [
-                "陈干语",
-                "陈千语"
-            ]
-        ]
+        "post_delay": 100,
+        "pre_delay": 200
     },
-    "AutoHeadhunting:DetectHeadhuntingEnd": {
+    "AutoHeadhunting:DetectedArsenalTicket": {
+        "recognition": "TemplateMatch",
+        "roi": [
+            12,
+            126,
+            100,
+            93
+        ],
+        "template": ["AutoHeadhunting/ArsenalTicket.png"]
+    },
+    "AutoHeadhunting:UndetectedArsenalTicket": {
+        "recognition": "TemplateMatch",
+        "roi": [
+            12,
+            126,
+            100,
+            93
+        ],
+        "template": ["AutoHeadhunting/ArsenalTicket.png"],
+        "inverse": true
+    },
+    "AutoHeadhunting:SS_UndetectedArsenalTicket": {
+        "action": "Click",
+        "recognition": "TemplateMatch",
+        "roi": [
+            12,
+            126,
+            100,
+            93
+        ],
+        "template": ["AutoHeadhunting/ArsenalTicket.png"],
+        "inverse": true,
+        "target": [
+            178,
+            132,
+            304,
+            199
+        ],
+        "post_delay": 300,
+        "next": ["AutoHeadhunting:SkipStars"]
+    },
+
+    "AutoHeadhunting:QuitDetails": {
+        "next": [
+            "AutoHeadhunting:QD_DetectedArsenalTicket",
+            "AutoHeadhunting:UndetectedArsenalTicket"
+        ],
+        "post_delay": 100,
+        "pre_delay": 200
+    },
+    "AutoHeadhunting:QD_DetectedArsenalTicket": {
+        "recognition": "TemplateMatch",
+        "roi": [
+            12,
+            126,
+            100,
+            93
+        ],
+        "template": ["AutoHeadhunting/ArsenalTicket.png"],
         "action": "Click",
         "target": [
-            169,
-            338,
-            293,
-            176
+            178,
+            132,
+            304,
+            199
         ],
-        "post_delay": 0,
-        "pre_delay": 0
+        "next": ["AutoHeadhunting:QuitDetails"]
     },
     "AutoHeadhunting:Close": {
         "recognition": "TemplateMatch",
@@ -78,6 +162,59 @@
             80,
             70
         ],
-        "green_mask": true
+        "green_mask": true,
+        "post_delay": 1500,
+        "next": [
+            "AutoHeadhunting:Done"
+        ]
+    },
+    "AutoHeadhunting:Done": {
+        "recognition": "TemplateMatch",
+        "template": ["AutoHeadhunting/done.png"],
+        "roi": [
+            623,
+            648,
+            34,
+            34
+        ],
+        "green_mask": true,
+        "post_delay": 800,
+        "action": "Click"
+    },
+    "AutoHeadhunting:DetectOperatorName": {
+        "recognition": "OCR",
+        "roi": [
+            771,
+            430,
+            343,
+            146
+        ],
+        "expected": [
+            "伊冯",
+            "余烬",
+            "别礼",
+            "洁尔佩塔",
+            "管理员",
+            "艾尔黛拉",
+            "莱万汀",
+            "骏卫",
+            "黎风",
+            "佩丽卡",
+            "大潘",
+            "弧光",
+            "昼雪",
+            "狼卫",
+            "艾维文娜",
+            "赛希",
+            "阿列什",
+            "陈千语",
+            "卡契尔",
+            "埃特拉",
+            "安塔尔",
+            "秋栗",
+            "萤石",
+            ".*"
+        ],
+        "timeout": 3000
     }
 }
