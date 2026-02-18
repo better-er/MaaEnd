@@ -242,6 +242,7 @@
     "option.PreferMode.cases.1x.label": "优先单抽",
     "option.PreferMode.cases.10x.label": "优先十连",
     "contact.file": "misc/locales/CONTACT/CONTACT.en_us.md",
+    "option.TargetOperator.cases.None.label": "No Target Operator",
     "operator.Perlica": "Perlica",
     "operator.Yvonne": "Yvonne",
     "operator.Ardelia": "Ardelia",

@@ -42,8 +42,10 @@ func (a *AutoHeadhunting) Run(ctx *maa.Context, arg *maa.CustomActionArg) bool {
 		return false
 	}
 
+	targetLabel, _ := o(params.TargetOperator)
+
 	fmt.Printf("%s: %d\n", t("target_pulls"), params.TargetPulls)
-	fmt.Printf("%s: %s\n", t("target_operator"), params.TargetOperator)
+	fmt.Printf("%s: %s\n", t("target_operator"), targetLabel)
 	fmt.Printf("%s: %d\n", t("target_num"), params.TargetOperatorNum)
 	fmt.Printf("%s: %d\n", t("prefer_mode"), params.PreferMode)
 
@@ -162,7 +164,7 @@ func (a *AutoHeadhunting) Run(ctx *maa.Context, arg *maa.CustomActionArg) bool {
 					return false
 				}
 
-				fmt.Printf(t("results"+"\n"), ocr.Text)
+				fmt.Printf(t("results")+"\n", ocr.Text)
 				log.Info().Msgf("[AutoHeadhunting] Detected operator: %s", ocr.Text)
 				ans = append(ans, ocr.Text)
 				break
@@ -193,10 +195,12 @@ func (a *AutoHeadhunting) Run(ctx *maa.Context, arg *maa.CustomActionArg) bool {
 		// 记录抽卡结果
 		ans_mp := make(map[string]int)
 		for _, name := range ans {
+			// 寻找目标干员
+			_, stars := o(t(name))
 			ans_mp[name]++
 			mp[name]++
-			// 寻找目标干员
-			if t(name) == params.TargetOperator {
+			mp[stars]++
+			if name == targetLabel {
 				targetCount++
 				log.Info().Msgf("[AutoHeadhunting] Found target operator: %s (count: %d)", name, targetCount)
 			}
@@ -218,7 +222,7 @@ func (a *AutoHeadhunting) Run(ctx *maa.Context, arg *maa.CustomActionArg) bool {
 	log.Info().Msgf("[AutoHeadhunting] Finished with %d pulls, found %d target operators (%s)", usedPulls, targetCount, params.TargetOperator)
 	log.Info().Msgf("[AutoHeadhunting] Final results: %v", mp)
 
-	fmt.Printf(t("done"+"\n"), usedPulls, targetCount, params.TargetOperator)
+	fmt.Printf(t("done")+"\n", usedPulls, targetCount, params.TargetOperator)
 	fmt.Printf(t("final_results"), mp)
 
 	return true

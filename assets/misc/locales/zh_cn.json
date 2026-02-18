@@ -242,6 +242,7 @@
     "controller.Win32-Front.label": "电脑端-前台",
     "controller.ADB.label": "安卓端",
     "contact.file": "misc/locales/CONTACT/CONTACT.zh_cn.md",
+    "option.TargetOperator.cases.None.label": "无目标干员",
     "operator.Perlica": "佩丽卡",
     "operator.Yvonne": "伊冯",
     "operator.Ardelia": "艾尔黛拉",

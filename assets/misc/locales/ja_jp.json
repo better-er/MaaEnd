@@ -242,6 +242,7 @@
     "option.PreferMode.cases.1x.label": "优先单抽",
     "option.PreferMode.cases.10x.label": "优先十连",
     "contact.file": "misc/locales/CONTACT/CONTACT.ja_jp.md",
+    "option.TargetOperator.cases.None.label": "目標干員なし",
     "operator.Perlica": "ペリカ",
     "operator.Yvonne": "イヴォンヌ",
     "operator.Ardelia": "アルデリア",

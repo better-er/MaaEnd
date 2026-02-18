@@ -40,26 +40,6 @@
                 }
             }
         },
-        "TargetOperator": {
-            "type": "input",
-            "label": "$option.TargetOperator.label",
-            "inputs": [
-                {
-                    "name": "TargetOperator",
-                    "label": "$option.TargetOperator.label",
-                    "description": "$option.TargetOperator.inputs.TargetOperator.description",
-                    "pipeline_type": "string",
-                    "default": ""
-                }
-            ],
-            "pipeline_override": {
-                "AutoHeadhunting": {
-                    "attach": {
-                        "TargetOperator": "{TargetOperator}"
-                    }
-                }
-            }
-        },
         "TargetOperatorNum": {
             "type": "input",
             "label": "$option.TargetOperatorNum.label",
@@ -104,6 +84,278 @@
                         "AutoHeadhunting": {
                             "attach": {
                                 "PreferMode": 10
+                            }
+                        }
+                    }
+                }
+            ]
+        },
+        "TargetOperator": {
+            "type": "select",
+            "label": "$option.TargetOperator.label",
+            "description": "$option.TargetOperator.inputs.TargetOperator.description",
+            "default_case": "None",
+            "cases": [
+                {
+                    "name": "None",
+                    "label": "$option.TargetOperator.cases.None.label",
+                    "pipeline_override": {
+                        "AutoHeadhunting": {
+                            "attach": {
+                                "TargetOperator": ""
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "Perlica",
+                    "label": "$operator.Perlica",
+                    "pipeline_override": {
+                        "AutoHeadhunting": {
+                            "attach": {
+                                "TargetOperator": "Perlica"
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "Yvonne",
+                    "label": "$operator.Yvonne",
+                    "pipeline_override": {
+                        "AutoHeadhunting": {
+                            "attach": {
+                                "TargetOperator": "Yvonne"
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "Ardelia",
+                    "label": "$operator.Ardelia",
+                    "pipeline_override": {
+                        "AutoHeadhunting": {
+                            "attach": {
+                                "TargetOperator": "Ardelia"
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "Gilberta",
+                    "label": "$operator.Gilberta",
+                    "pipeline_override": {
+                        "AutoHeadhunting": {
+                            "attach": {
+                                "TargetOperator": "Gilberta"
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "ChenQianyu",
+                    "label": "$operator.ChenQianyu",
+                    "pipeline_override": {
+                        "AutoHeadhunting": {
+                            "attach": {
+                                "TargetOperator": "ChenQianyu"
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "Wulfgard",
+                    "label": "$operator.Wulfgard",
+                    "pipeline_override": {
+                        "AutoHeadhunting": {
+                            "attach": {
+                                "TargetOperator": "Wulfgard"
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "Antal",
+                    "label": "$operator.Antal",
+                    "pipeline_override": {
+                        "AutoHeadhunting": {
+                            "attach": {
+                                "TargetOperator": "Antal"
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "Xaihi",
+                    "label": "$operator.Xaihi",
+                    "pipeline_override": {
+                        "AutoHeadhunting": {
+                            "attach": {
+                                "TargetOperator": "Xaihi"
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "Lifeng",
+                    "label": "$operator.Lifeng",
+                    "pipeline_override": {
+                        "AutoHeadhunting": {
+                            "attach": {
+                                "TargetOperator": "Lifeng"
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "Catcher",
+                    "label": "$operator.Catcher",
+                    "pipeline_override": {
+                        "AutoHeadhunting": {
+                            "attach": {
+                                "TargetOperator": "Catcher"
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "Arclight",
+                    "label": "$operator.Arclight",
+                    "pipeline_override": {
+                        "AutoHeadhunting": {
+                            "attach": {
+                                "TargetOperator": "Arclight"
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "Avywenna",
+                    "label": "$operator.Avywenna",
+                    "pipeline_override": {
+                        "AutoHeadhunting": {
+                            "attach": {
+                                "TargetOperator": "Avywenna"
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "Laevatain",
+                    "label": "$operator.Laevatain",
+                    "pipeline_override": {
+                        "AutoHeadhunting": {
+                            "attach": {
+                                "TargetOperator": "Laevatain"
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "Alesh",
+                    "label": "$operator.Alesh",
+                    "pipeline_override": {
+                        "AutoHeadhunting": {
+                            "attach": {
+                                "TargetOperator": "Alesh"
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "Pogranichnik",
+                    "label": "$operator.Pogranichnik",
+                    "pipeline_override": {
+                        "AutoHeadhunting": {
+                            "attach": {
+                                "TargetOperator": "Pogranichnik"
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "LastRite",
+                    "label": "$operator.LastRite",
+                    "pipeline_override": {
+                        "AutoHeadhunting": {
+                            "attach": {
+                                "TargetOperator": "LastRite"
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "Ember",
+                    "label": "$operator.Ember",
+                    "pipeline_override": {
+                        "AutoHeadhunting": {
+                            "attach": {
+                                "TargetOperator": "Ember"
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "Snowshine",
+                    "label": "$operator.Snowshine",
+                    "pipeline_override": {
+                        "AutoHeadhunting": {
+                            "attach": {
+                                "TargetOperator": "Snowshine"
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "DaPan",
+                    "label": "$operator.DaPan",
+                    "pipeline_override": {
+                        "AutoHeadhunting": {
+                            "attach": {
+                                "TargetOperator": "DaPan"
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "Fluorite",
+                    "label": "$operator.Fluorite",
+                    "pipeline_override": {
+                        "AutoHeadhunting": {
+                            "attach": {
+                                "TargetOperator": "Fluorite"
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "Akekuri",
+                    "label": "$operator.Akekuri",
+                    "pipeline_override": {
+                        "AutoHeadhunting": {
+                            "attach": {
+                                "TargetOperator": "Akekuri"
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "Estella",
+                    "label": "$operator.Estella",
+                    "pipeline_override": {
+                        "AutoHeadhunting": {
+                            "attach": {
+                                "TargetOperator": "Estella"
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "Endministrator",
+                    "label": "$operator.Endministrator",
+                    "pipeline_override": {
+                        "AutoHeadhunting": {
+                            "attach": {
+                                "TargetOperator": "Endministrator"
                             }
                         }
                     }
