@@ -24,22 +24,30 @@ func (a *AutoHeadhunting) Run(ctx *maa.Context, arg *maa.CustomActionArg) bool {
 		TargetOperatorNum int    // 抽到目标干员达到该数量后停止
 		PreferMode        int    // 抽卡偏好 优先使用对应模式进行抽取 不足时回退到单抽直至满足停止条件
 	}
-	node, err := ctx.GetNode("AutoHeadhunting")
+	raw, err := ctx.GetNodeJSON("AutoHeadhunting")
 	if err != nil {
-		log.Err(err).Msg("[AutoHeadhunting] Failed to get node parameters")
+		log.Err(err).Msg("[AutoHeadhunting] Failed to get node JSON")
 		return false
 	}
 
-	attach := node.Attach
-	attachJSON, err := json.Marshal(attach)
-	if err != nil {
-		log.Err(err).Msg("[AutoHeadhunting] Failed to marshal attach")
+	var nodeData map[string]json.RawMessage
+	if err := json.Unmarshal([]byte(raw), &nodeData); err != nil {
+		log.Err(err).Msg("[AutoHeadhunting] Failed to unmarshal node JSON")
 		return false
 	}
-	if err := json.Unmarshal(attachJSON, &params); err != nil {
+
+	attachRaw, ok := nodeData["attach"]
+	if !ok {
+		log.Error().Msg("[AutoHeadhunting] attach field not found in node JSON")
+		return false
+	}
+
+	if err := json.Unmarshal(attachRaw, &params); err != nil {
 		log.Err(err).Msg("[AutoHeadhunting] Failed to unmarshal attach to params")
 		return false
 	}
+
+	lang = params.Language
 
 	targetLabel, _ := o(params.TargetOperator)
 	if targetLabel == "" {
@@ -48,8 +56,6 @@ func (a *AutoHeadhunting) Run(ctx *maa.Context, arg *maa.CustomActionArg) bool {
 
 	// 输出任务参数配置摘要 HTML
 	logTaskParamsHTML(ctx, params.TargetPulls, targetLabel, params.TargetOperatorNum, params.PreferMode)
-
-	lang = params.Language
 
 	stopping := false
 	usedPulls := 0
@@ -105,15 +111,18 @@ func (a *AutoHeadhunting) Run(ctx *maa.Context, arg *maa.CustomActionArg) bool {
 		}
 
 		// 点击确认后检测是否存在源石图标 如果有停止任务 (抽数不够)
+		controller.PostScreencap().Wait()
 		img, err := controller.CacheImage()
 		if err != nil {
-			log.Err(err).Msg("[AutoHeadhunting] Failed to cache image")
+			log.Err(err).Msg("[AutoHeadhunting] Failed to get cache image")
 			return false
 		}
 		details, err := ctx.RunRecognition("AutoHeadhunting:DetectOrigeometry", img)
 		if err == nil && len(details.Results.Best) > 0 {
 			log.Info().Msg("[AutoHeadhunting] Found Origeometry, stopping task...")
-			return true
+			LogMXUSimpleHTMLWithColor(ctx, t("unenough_pulls"), "#ffa500")
+			stopping = true
+			break
 		}
 
 		// 跳过拉杆和降落动画

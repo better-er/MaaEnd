@@ -54,7 +54,7 @@ func formatOperatorNameColoredHTML(name string, stars string) string {
 // logTaskParamsHTML 输出任务参数配置摘要的 HTML
 func logTaskParamsHTML(ctx *maa.Context, targetPulls int, targetLabel string, targetOperatorNum int, preferMode int) {
 	var b strings.Builder
-	b.WriteString(`<div style="font-weight: 900; color: #00bfff; margin-bottom: 2px;">🎰 Auto Headhunting</div>`)
+	b.WriteString(fmt.Sprintf(`<div style="font-weight: 900; color: #00bfff; margin-bottom: 2px;">🎰 %s</div>`, t("params")))
 	b.WriteString(`<table style="border-collapse: collapse; font-size: 12px;">`)
 
 	rows := []struct {

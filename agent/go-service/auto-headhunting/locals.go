@@ -23,6 +23,7 @@ func o(key string) (string, string) {
 // 显示文本 Display Text
 var locals = map[string]map[string]string{
 	"zh_cn": {
+		"params":           "配置参数",
 		"target_pulls":     "目标抽数",
 		"target_operator":  "目标干员",
 		"target_num":       "目标数量",
@@ -31,9 +32,9 @@ var locals = map[string]map[string]string{
 		"results":          "抽取结果: %s",
 		"final_results":    "最终结果: %v",
 		"used_pulls":       "已抽取次数",
+		"unenough_pulls":   "剩余抽数不足，已终止任务。",
 		"task_unknown_err": "未知错误",
 		"done":             "完成 %d 次抽取，共获取 %d 个目标干员（%s）",
-
 		// 干员信息
 		"佩里卡":  "Perlica",
 		"伊冯":   "Yvonne",
@@ -117,7 +118,7 @@ var operators = map[string]map[string]string{
 		"ja_jp": "アンタル",
 		"ko_kr": "안탈",
 		"zh_tw": "安塔爾",
-		"stars": "5",
+		"stars": "4",
 	},
 	"Xaihi": {
 		"zh_cn": "赛希",
