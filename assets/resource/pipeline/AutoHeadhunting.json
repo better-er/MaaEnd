@@ -22,7 +22,7 @@
             80
         ],
         "action": "Click",
-        "post_delay": 1500,
+        "post_delay": 1000,
         "next": [
             "AutoHeadhunting:Confirm"
         ]
@@ -37,7 +37,7 @@
             91
         ],
         "action": "Click",
-        "post_delay": 1500,
+        "post_delay": 1000,
         "next": [
             "AutoHeadhunting:Confirm"
         ]
@@ -53,7 +53,7 @@
             89
         ],
         "action": "Click",
-        "post_delay": 2500
+        "post_delay": 1500
     },
     "AutoHeadhunting:DetectOrigeometry": {
         // 检测源石图标
@@ -108,7 +108,8 @@
             100,
             93
         ],
-        "post_delay": 400,
+        "pre_delay": 100,
+        "post_delay": 300,
         "template": ["AutoHeadhunting/ArsenalTicket.png"]
     },
     "AutoHeadhunting:UndetectedArsenalTicket": {
@@ -121,10 +122,10 @@
         ],
         "template": ["AutoHeadhunting/ArsenalTicket.png"],
         "inverse": true,
-        "post_delay": 400
+        "pre_delay": 100,
+        "post_delay": 300
     },
     "AutoHeadhunting:SS_UndetectedArsenalTicket": {
-        "action": "Click",
         "recognition": "TemplateMatch",
         "roi": [
             12,
@@ -134,13 +135,15 @@
         ],
         "template": ["AutoHeadhunting/ArsenalTicket.png"],
         "inverse": true,
+        "action": "Click",
         "target": [
             178,
             132,
             304,
             199
         ],
-        "post_delay": 400,
+        "pre_delay": 100,
+        "post_delay": 300,
         "next": ["AutoHeadhunting:SkipStars"]
     },
     "AutoHeadhunting:Next_DetectedArsenalTicket": {
@@ -159,6 +162,8 @@
             304,
             199
         ],
+        "pre_delay": 100,
+        "post_delay": 300,
         "next": ["AutoHeadhunting:NextOperator"]
     },
 
@@ -172,7 +177,7 @@
             70
         ],
         "green_mask": true,
-        "post_delay": 1500,
+        "post_delay": 1200,
         "action": "Click",
         "next": [
             "AutoHeadhunting:Done",
@@ -198,6 +203,7 @@
             "AutoHeadhunting:DetectedArsenalTicket",
             "AutoHeadhunting:SS_UndetectedArsenalTicket"
         ],
+        "pre_delay": 0,
         "post_delay": 300
     },
     "AutoHeadhunting:NextOperator": {
@@ -206,6 +212,7 @@
             "AutoHeadhunting:Next_DetectedArsenalTicket",
             "AutoHeadhunting:UndetectedArsenalTicket"
         ],
+        "pre_delay": 0,
         "post_delay": 300
     },
     "AutoHeadhunting:DetectOperatorName": {

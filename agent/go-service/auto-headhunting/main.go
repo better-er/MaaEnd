@@ -132,7 +132,7 @@ func (a *AutoHeadhunting) Run(ctx *maa.Context, arg *maa.CustomActionArg) bool {
 			return false
 		}
 		if task_details != nil && !task_details.Status.Done() {
-			// 六星动画无法跳过 当未检测到跳过键时 进入等待
+			// 部分六星动画无法跳过 当未检测到跳过键时 进入等待
 			log.Info().Msg("[AutoHeadhunting] Skip button is not detected, waiting for animation to finish...")
 			ctx.RunTask("AutoHeadhunting:Waiting")
 		}
@@ -163,7 +163,7 @@ func (a *AutoHeadhunting) Run(ctx *maa.Context, arg *maa.CustomActionArg) bool {
 
 				if len(details.Results.Best) == 0 {
 					log.Warn().Msg("[AutoHeadhunting] No OCR result detected. Retrying...")
-					time.Sleep(500 * time.Millisecond)
+					time.Sleep(300 * time.Millisecond)
 					continue
 				}
 
