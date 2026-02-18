@@ -3,7 +3,6 @@ package autoheadhunting
 import (
 	"encoding/json"
 	"fmt"
-	"strings"
 	"time"
 
 	"github.com/MaaXYZ/maa-framework-go/v4"
@@ -43,11 +42,12 @@ func (a *AutoHeadhunting) Run(ctx *maa.Context, arg *maa.CustomActionArg) bool {
 	}
 
 	targetLabel, _ := o(params.TargetOperator)
+	if targetLabel == "" {
+		targetLabel = "None"
+	}
 
-	fmt.Printf("%s: %d\n", t("target_pulls"), params.TargetPulls)
-	fmt.Printf("%s: %s\n", t("target_operator"), targetLabel)
-	fmt.Printf("%s: %d\n", t("target_num"), params.TargetOperatorNum)
-	fmt.Printf("%s: %d\n", t("prefer_mode"), params.PreferMode)
+	// 输出任务参数配置摘要 HTML
+	logTaskParamsHTML(ctx, params.TargetPulls, targetLabel, params.TargetOperatorNum, params.PreferMode)
 
 	lang = params.Language
 
@@ -78,7 +78,7 @@ func (a *AutoHeadhunting) Run(ctx *maa.Context, arg *maa.CustomActionArg) bool {
 
 		mode := params.PreferMode
 		if params.TargetPulls-usedPulls < 10 {
-			fmt.Printf("%s\n", t("fallback_1x"))
+			LogMXUSimpleHTMLWithColor(ctx, t("fallback_1x"), "#ffa500")
 			mode = 1
 		}
 
@@ -164,7 +164,8 @@ func (a *AutoHeadhunting) Run(ctx *maa.Context, arg *maa.CustomActionArg) bool {
 					return false
 				}
 
-				fmt.Printf(t("results")+"\n", ocr.Text)
+				_, ocrStars := o(t(ocr.Text))
+				LogMXUSimpleHTMLWithColor(ctx, fmt.Sprintf(t("results"), ocr.Text), getColorForStars(ocrStars))
 				log.Info().Msgf("[AutoHeadhunting] Detected operator: %s", ocr.Text)
 				ans = append(ans, ocr.Text)
 				break
@@ -207,23 +208,21 @@ func (a *AutoHeadhunting) Run(ctx *maa.Context, arg *maa.CustomActionArg) bool {
 
 		}
 		ans_mp_str := make([]string, 0)
-		ans_str := make([]string, 0)
-		ans_str = append(ans_str, fmt.Sprintf("%s %d/%d", t("used_pulls"), usedPulls, params.TargetPulls)+"\n")
 		for name, count := range ans_mp {
 			ans_mp_str = append(ans_mp_str, fmt.Sprintf("%s: %d", name, count))
-			ans_str = append(ans_str, fmt.Sprintf("%s: %d", name, count)+"\n")
 		}
-
-		fmt.Printf("%s", strings.Join(ans_str, ""))
 		log.Info().Msgf("[AutoHeadhunting] Results: %s", ans_mp_str)
 		log.Info().Msgf("[AutoHeadhunting] Used pulls: %d /  %d", usedPulls, params.TargetPulls)
+
+		// 输出单轮抽卡结果的带颜色 HTML
+		logPullResultsHTML(ctx, usedPulls, params.TargetPulls, ans_mp)
 	}
 
 	log.Info().Msgf("[AutoHeadhunting] Finished with %d pulls, found %d target operators (%s)", usedPulls, targetCount, params.TargetOperator)
 	log.Info().Msgf("[AutoHeadhunting] Final results: %v", mp)
 
-	fmt.Printf(t("done")+"\n", usedPulls, targetCount, targetLabel)
-	// fmt.Printf(t("final_results"), mp) // TODO: 本地化最终结果输出
+	// 输出最终抽卡结果摘要的带颜色 HTML
+	logFinalSummaryHTML(ctx, usedPulls, targetCount, targetLabel, mp)
 
 	return true
 }
