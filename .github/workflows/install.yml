@@ -156,6 +156,40 @@ jobs:
           name: MaaEnd-${{ matrix.os }}-${{ matrix.arch }}-intermediate
           path: install
 
+      - name: Download MXU (fixed-webview)
+        if: ${{ matrix.os == 'win' && matrix.arch == 'x86_64' }}
+        uses: robinraju/release-downloader@v1
+        with:
+          repository: MistEO/MXU
+          fileName: "*win-x86_64-fixed-webview*"
+          tag: ${{ needs.meta.outputs.mxu_version }}
+          out-file-path: "downloads/MXU-fixed-webview"
+          extract: true
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Prepare fixed-webview variant
+        if: ${{ matrix.os == 'win' && matrix.arch == 'x86_64' }}
+        shell: bash
+        run: |
+          cp -r install install-fixed-webview
+          if [[ -d downloads/MXU-fixed-webview ]]; then
+            rm -f downloads/MXU-fixed-webview/*.zip
+            if [[ -d downloads/MXU-fixed-webview/webview2_runtime ]]; then
+              cp -r downloads/MXU-fixed-webview/webview2_runtime install-fixed-webview/
+              echo "Added webview2_runtime to fixed-webview variant"
+              ls -la install-fixed-webview/webview2_runtime/ | head -20
+            else
+              echo "Warning: webview2_runtime not found in MXU fixed-webview download"
+              ls -la downloads/MXU-fixed-webview/
+            fi
+          fi
+
+      - uses: actions/upload-artifact@v4
+        if: ${{ matrix.os == 'win' && matrix.arch == 'x86_64' }}
+        with:
+          name: MaaEnd-win-x86_64-fixed-webview-intermediate
+          path: install-fixed-webview
+
   package_linux_tarball:
     needs: [meta, build_and_install]
     runs-on: ubuntu-latest
@@ -343,6 +377,32 @@ jobs:
           name: MaaEnd-win-${{ matrix.arch }}-zip
           path: "MaaEnd-win-${{ matrix.arch }}.zip"
 
+      - name: Download fixed-webview artifact
+        if: matrix.arch == 'x86_64'
+        uses: actions/download-artifact@v4
+        with:
+          name: MaaEnd-win-x86_64-fixed-webview-intermediate
+          path: "install-fixed-webview"
+
+      - name: Modify fixed-webview MaaEnd.exe icon
+        if: matrix.arch == 'x86_64'
+        shell: bash
+        run: |
+          ./rcedit.exe "install-fixed-webview/MaaEnd.exe" --set-icon "maaend.ico"
+          echo "Fixed-webview MaaEnd.exe icon modified successfully"
+
+      - name: Package Fixed-WebView ZIP
+        if: matrix.arch == 'x86_64'
+        shell: pwsh
+        run: |
+          Compress-Archive -Path install-fixed-webview/* -DestinationPath MaaEnd-win-${{ matrix.arch }}-fixed-webview.zip
+
+      - uses: actions/upload-artifact@v4
+        if: matrix.arch == 'x86_64'
+        with:
+          name: MaaEnd-win-${{ matrix.arch }}-fixed-webview-zip
+          path: "MaaEnd-win-${{ matrix.arch }}-fixed-webview.zip"
+
   changelog:
     name: Generate changelog
     needs: meta
@@ -392,7 +452,7 @@ jobs:
       - name: Prepare release artifacts
         run: |
           cd artifacts
-          # 重命名 win zip 文件，添加版本号
+          # 重命名 win zip 文件（含 fixed-webview），添加版本号
           for f in MaaEnd-win-*-zip/MaaEnd-win-*.zip; do
             if [[ -f "$f" ]]; then
               name=$(basename "$f" .zip)
