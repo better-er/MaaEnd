@@ -99,7 +99,6 @@ func (a *AutoHeadhunting) Run(ctx *maa.Context, arg *maa.CustomActionArg) bool {
 
 		switch mode {
 		case 1:
-			usedPulls++
 			_, err := ctx.RunTask("AutoHeadhunting:Click1x")
 			if err != nil {
 				log.Err(err).Msg("[AutoHeadhunting] Failed to perform 1x pull")
@@ -107,7 +106,6 @@ func (a *AutoHeadhunting) Run(ctx *maa.Context, arg *maa.CustomActionArg) bool {
 			}
 			log.Info().Msg("[AutoHeadhunting] Performed 1x pull")
 		case 10:
-			usedPulls += 10
 			_, err := ctx.RunTask("AutoHeadhunting:Click10x")
 			if err != nil {
 				log.Err(err).Msg("[AutoHeadhunting] Failed to perform 10x pull")
@@ -134,6 +132,7 @@ func (a *AutoHeadhunting) Run(ctx *maa.Context, arg *maa.CustomActionArg) bool {
 			break
 		}
 
+		usedPulls += mode
 		log.Info().Msgf("[AutoHeadhunting] Used pulls: %d / %d", usedPulls, params.TargetPulls)
 		LogMXUSimpleHTMLWithColor(ctx, fmt.Sprintf(t("used_pulls"), usedPulls, params.TargetPulls), "#00ff00")
 
