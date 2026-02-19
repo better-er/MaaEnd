@@ -171,18 +171,23 @@ jobs:
         if: ${{ matrix.os == 'win' }}
         shell: bash
         run: |
-          cp -r install install-fixed-webview
-          if [[ -d downloads/MXU-fixed-webview ]]; then
-            rm -f downloads/MXU-fixed-webview/*.zip
-            if [[ -d downloads/MXU-fixed-webview/webview2_runtime ]]; then
-              cp -r downloads/MXU-fixed-webview/webview2_runtime install-fixed-webview/
-              echo "Added webview2_runtime to fixed-webview variant"
-              ls -la install-fixed-webview/webview2_runtime/ | head -20
-            else
-              echo "Warning: webview2_runtime not found in MXU fixed-webview download"
-              ls -la downloads/MXU-fixed-webview/
-            fi
+          if [[ ! -d downloads/MXU-fixed-webview ]]; then
+            echo "Error: MXU fixed-webview assets directory not found"
+            exit 1
           fi
+
+          rm -f downloads/MXU-fixed-webview/*.zip
+
+          if [[ ! -d downloads/MXU-fixed-webview/webview2_runtime ]]; then
+            echo "Error: webview2_runtime not found in MXU fixed-webview download"
+            ls -la downloads/MXU-fixed-webview/ || true
+            exit 1
+          fi
+
+          cp -r install install-fixed-webview
+          cp -r downloads/MXU-fixed-webview/webview2_runtime install-fixed-webview/
+          echo "Added webview2_runtime to fixed-webview variant"
+          ls -la install-fixed-webview/webview2_runtime/ | head -20
 
       - uses: actions/upload-artifact@v4
         if: ${{ matrix.os == 'win' }}
