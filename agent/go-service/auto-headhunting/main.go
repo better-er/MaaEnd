@@ -130,7 +130,8 @@ func (a *AutoHeadhunting) Run(ctx *maa.Context, arg *maa.CustomActionArg) bool {
 			break
 		}
 
-		log.Info().Msgf("[AutoHeadhunting] Used pulls: %d /  %d", usedPulls, params.TargetPulls)
+		log.Info().Msgf("[AutoHeadhunting] Used pulls: %d / %d", usedPulls, params.TargetPulls)
+		LogMXUSimpleHTMLWithColor(ctx, fmt.Sprintf(t("used_pulls"), usedPulls, params.TargetPulls), "#00ff00")
 
 		// 跳过拉杆和降落动画
 		task_details, err := ctx.RunTask("AutoHeadhunting:Skip1")

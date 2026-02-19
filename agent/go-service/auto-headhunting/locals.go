@@ -31,7 +31,7 @@ var locals = map[string]map[string]string{
 		"fallback_1x":      "距离目标抽数小于10抽，切换为单抽模式",
 		"results":          "抽取结果: %s",
 		"final_results":    "最终结果: %v",
-		"used_pulls":       "已抽取次数",
+		"used_pulls":       "已抽取次数: %d / %d",
 		"unenough_pulls":   "剩余抽数不足，已终止任务。",
 		"task_unknown_err": "未知错误",
 		"done":             "完成 %d 次抽取，共获取 %d 个目标干员（%s）",
