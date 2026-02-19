@@ -157,18 +157,18 @@ jobs:
           path: install
 
       - name: Download MXU (fixed-webview)
-        if: ${{ matrix.os == 'win' && matrix.arch == 'x86_64' }}
+        if: ${{ matrix.os == 'win' }}
         uses: robinraju/release-downloader@v1
         with:
           repository: MistEO/MXU
-          fileName: "*win-x86_64-fixed-webview*"
+          fileName: "*win-${{ matrix.arch }}-fixed-webview*"
           tag: ${{ needs.meta.outputs.mxu_version }}
           out-file-path: "downloads/MXU-fixed-webview"
           extract: true
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Prepare fixed-webview variant
-        if: ${{ matrix.os == 'win' && matrix.arch == 'x86_64' }}
+        if: ${{ matrix.os == 'win' }}
         shell: bash
         run: |
           cp -r install install-fixed-webview
@@ -185,9 +185,9 @@ jobs:
           fi
 
       - uses: actions/upload-artifact@v4
-        if: ${{ matrix.os == 'win' && matrix.arch == 'x86_64' }}
+        if: ${{ matrix.os == 'win' }}
         with:
-          name: MaaEnd-win-x86_64-fixed-webview-intermediate
+          name: MaaEnd-win-${{ matrix.arch }}-fixed-webview-intermediate
           path: install-fixed-webview
 
   package_linux_tarball:
@@ -378,10 +378,9 @@ jobs:
           path: "MaaEnd-win-${{ matrix.arch }}.zip"
 
       - name: Download fixed-webview artifact
-        if: matrix.arch == 'x86_64'
         uses: actions/download-artifact@v4
         with:
-          name: MaaEnd-win-x86_64-fixed-webview-intermediate
+          name: MaaEnd-win-${{ matrix.arch }}-fixed-webview-intermediate
           path: "install-fixed-webview"
 
       - name: Modify fixed-webview MaaEnd.exe icon
@@ -392,13 +391,11 @@ jobs:
           echo "Fixed-webview MaaEnd.exe icon modified successfully"
 
       - name: Package Fixed-WebView ZIP
-        if: matrix.arch == 'x86_64'
         shell: pwsh
         run: |
           Compress-Archive -Path install-fixed-webview/* -DestinationPath MaaEnd-win-${{ matrix.arch }}-fixed-webview.zip
 
       - uses: actions/upload-artifact@v4
-        if: matrix.arch == 'x86_64'
         with:
           name: MaaEnd-win-${{ matrix.arch }}-fixed-webview-zip
           path: "MaaEnd-win-${{ matrix.arch }}-fixed-webview.zip"
