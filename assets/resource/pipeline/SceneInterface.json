@@ -156,7 +156,8 @@
         "post_delay": 0,
         "next": [
             "ScenePrivateAnyEnterMenuRegionalDevelopmentSuccess",
-            "ScenePrivateMenuListEnterMenuRegionalDevelopment",
+            // 临时禁用：菜单总列表入口当前稳定性不足，优先使用大世界直达入口
+            // "ScenePrivateMenuListEnterMenuRegionalDevelopment",
             "ScenePrivateWorldEnterMenuRegionalDevelopment",
             "[JumpBack]SceneAnyEnterWorld"
         ]
@@ -167,7 +168,8 @@
         "post_delay": 0,
         "next": [
             "ScenePrivateAnyEnterMenuEventSuccess",
-            "ScenePrivateMenuListEnterMenuEvent",
+            // 临时禁用：菜单总列表入口当前稳定性不足，优先使用大世界直达入口
+            // "ScenePrivateMenuListEnterMenuEvent",
             "ScenePrivateWorldEnterMenuEvent",
             "[JumpBack]SceneAnyEnterWorld"
         ]
@@ -178,7 +180,8 @@
         "post_delay": 0,
         "next": [
             "ScenePrivateAnyEnterMenuValuablesSuccess",
-            "ScenePrivateMenuListEnterMenuValuables",
+            // 临时禁用：菜单总列表入口当前稳定性不足，优先使用大世界直达入口
+            // "ScenePrivateMenuListEnterMenuValuables",
             "ScenePrivateWorldEnterMenuValuables",
             "[JumpBack]SceneAnyEnterWorld"
         ]
@@ -189,7 +192,8 @@
         "post_delay": 0,
         "next": [
             "ScenePrivateAnyEnterMenuOperationalManualSuccess",
-            "ScenePrivateMenuListEnterMenuOperationalManual",
+            // 临时禁用：菜单总列表入口当前稳定性不足，优先使用大世界直达入口
+            // "ScenePrivateMenuListEnterMenuOperationalManual",
             "ScenePrivateWorldEnterMenuOperationalManual",
             "[JumpBack]SceneAnyEnterWorld"
         ]
@@ -200,7 +204,8 @@
         "post_delay": 0,
         "next": [
             "ScenePrivateAnyEnterMenuProtocolPassSuccess",
-            "ScenePrivateMenuListEnterMenuProtocolPass",
+            // 临时禁用：菜单总列表入口当前稳定性不足，优先使用大世界直达入口
+            // "ScenePrivateMenuListEnterMenuProtocolPass",
             "ScenePrivateWorldEnterMenuProtocolPass",
             "[JumpBack]SceneAnyEnterWorld"
         ]
@@ -211,7 +216,8 @@
         "post_delay": 0,
         "next": [
             "ScenePrivateAnyEnterMenuFriendsSuccess",
-            "ScenePrivateMenuListEnterMenuFriends",
+            // 临时禁用：菜单总列表入口当前稳定性不足，优先使用大世界直达入口
+            // "ScenePrivateMenuListEnterMenuFriends",
             "ScenePrivateWorldEnterMenuFriends",
             "[JumpBack]SceneAnyEnterWorld"
         ]
@@ -222,7 +228,8 @@
         "post_delay": 0,
         "next": [
             "ScenePrivateAnyEnterMenuGearAssemblySuccess",
-            "ScenePrivateMenuListEnterMenuGearAssembly",
+            // 临时禁用：菜单总列表入口当前稳定性不足，优先使用大世界直达入口
+            // "ScenePrivateMenuListEnterMenuGearAssembly",
             "ScenePrivateWorldFactoryEnterMenuGearAssembly",
             "[JumpBack]SceneEnterWorldFactory"
         ]
@@ -253,7 +260,8 @@
         "post_delay": 0,
         "next": [
             "ScenePrivateAnyEnterMenuBackpackSuccess",
-            "ScenePrivateMenuListEnterMenuBackpack",
+            // 临时禁用：菜单总列表入口当前稳定性不足，优先使用大世界直达入口
+            // "ScenePrivateMenuListEnterMenuBackpack",
             "ScenePrivateWorldEnterMenuBackpack",
             "[JumpBack]SceneAnyEnterWorld"
         ]
@@ -284,7 +292,8 @@
         "post_delay": 0,
         "next": [
             "ScenePrivateAnyEnterMenuWikiSuccess",
-            "ScenePrivateMenuListEnterMenuWiki",
+            // 临时禁用：菜单总列表入口当前稳定性不足，优先使用大世界直达入口
+            // "ScenePrivateMenuListEnterMenuWiki",
             "ScenePrivateWorldEnterMenuWiki",
             "[JumpBack]SceneAnyEnterWorld"
         ]
