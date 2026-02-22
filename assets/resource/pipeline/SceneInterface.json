@@ -15,6 +15,7 @@
         "pre_delay": 0,
         "post_delay": 0,
         "next": [
+            "ScenePrivateAnyEnterMenuListSuccess",
             "ScenePrivateWorldEnterMenuList",
             "[JumpBack]SceneAnyEnterWorld"
         ]
@@ -24,6 +25,8 @@
         "pre_delay": 0,
         "post_delay": 0,
         "next": [
+            "ScenePrivateMapAnyEnterMapDijiangSuccess",
+            "ScenePrivateMapNotDijiangEnterMapDijiang",
             "ScenePrivateWorldEnterMapDijiang",
             "[JumpBack]SceneAnyEnterWorld"
         ]
@@ -33,6 +36,8 @@
         "pre_delay": 0,
         "post_delay": 0,
         "next": [
+            "ScenePrivateMapAnyEnterMapValleyIVTheHubSuccess",
+            "ScenePrivateMapOverviewEnterMapValleyIVTheHub",
             "ScenePrivateWorldEnterMapValleyIVTheHub",
             "[JumpBack]SceneAnyEnterWorld"
         ]
@@ -42,6 +47,8 @@
         "pre_delay": 0,
         "post_delay": 0,
         "next": [
+            "ScenePrivateMapAnyEnterMapValleyIVValleyPassSuccess",
+            "ScenePrivateMapOverviewEnterMapValleyIVValleyPass",
             "ScenePrivateWorldEnterMapValleyIVValleyPass",
             "[JumpBack]SceneAnyEnterWorld"
         ]
@@ -51,6 +58,8 @@
         "pre_delay": 0,
         "post_delay": 0,
         "next": [
+            "ScenePrivateMapAnyEnterMapValleyIVOriginiumScienceParkSuccess",
+            "ScenePrivateMapOverviewEnterMapValleyIVOriginiumSciencePark",
             "ScenePrivateWorldEnterMapValleyIVOriginiumSciencePark",
             "[JumpBack]SceneAnyEnterWorld"
         ]
@@ -60,6 +69,8 @@
         "pre_delay": 0,
         "post_delay": 0,
         "next": [
+            "ScenePrivateMapAnyEnterMapValleyIVAburreyQuarrySuccess",
+            "ScenePrivateMapOverviewEnterMapValleyIVAburreyQuarry",
             "ScenePrivateWorldEnterMapValleyIVAburreyQuarry",
             "[JumpBack]SceneAnyEnterWorld"
         ]
@@ -69,6 +80,8 @@
         "pre_delay": 0,
         "post_delay": 0,
         "next": [
+            "ScenePrivateMapAnyEnterMapValleyIVOriginLodespringSuccess",
+            "ScenePrivateMapOverviewEnterMapValleyIVOriginLodespring",
             "ScenePrivateWorldEnterMapValleyIVOriginLodespring",
             "[JumpBack]SceneAnyEnterWorld"
         ]
@@ -78,6 +91,8 @@
         "pre_delay": 0,
         "post_delay": 0,
         "next": [
+            "ScenePrivateMapAnyEnterMapValleyIVPowerPlateauSuccess",
+            "ScenePrivateMapOverviewEnterMapValleyIVPowerPlateau",
             "ScenePrivateWorldEnterMapValleyIVPowerPlateau",
             "[JumpBack]SceneAnyEnterWorld"
         ]
@@ -87,6 +102,8 @@
         "pre_delay": 0,
         "post_delay": 0,
         "next": [
+            "ScenePrivateMapAnyEnterMapWulingWulingCitySuccess",
+            "ScenePrivateMapOverviewEnterMapWulingWulingCity",
             "ScenePrivateWorldEnterMapWulingWulingCity",
             "[JumpBack]SceneAnyEnterWorld"
         ]
@@ -96,6 +113,8 @@
         "pre_delay": 0,
         "post_delay": 0,
         "next": [
+            "ScenePrivateMapAnyEnterMapWulingJingyuValleySuccess",
+            "ScenePrivateMapOverviewEnterMapWulingJingyuValley",
             "ScenePrivateWorldEnterMapWulingJingyuValley",
             "[JumpBack]SceneAnyEnterWorld"
         ]
@@ -105,6 +124,7 @@
         "pre_delay": 0,
         "post_delay": 0,
         "next": [
+            "ScenePrivateAnyEnterWorldDijiangSuccess",
             "ScenePrivateWorldEnterWorldDijiang",
             "[JumpBack]SceneAnyEnterWorld"
         ]
@@ -135,6 +155,8 @@
         "pre_delay": 0,
         "post_delay": 0,
         "next": [
+            "ScenePrivateAnyEnterMenuRegionalDevelopmentSuccess",
+            "ScenePrivateMenuListEnterMenuRegionalDevelopment",
             "ScenePrivateWorldEnterMenuRegionalDevelopment",
             "[JumpBack]SceneAnyEnterWorld"
         ]
@@ -144,6 +166,8 @@
         "pre_delay": 0,
         "post_delay": 0,
         "next": [
+            "ScenePrivateAnyEnterMenuEventSuccess",
+            "ScenePrivateMenuListEnterMenuEvent",
             "ScenePrivateWorldEnterMenuEvent",
             "[JumpBack]SceneAnyEnterWorld"
         ]
@@ -153,6 +177,8 @@
         "pre_delay": 0,
         "post_delay": 0,
         "next": [
+            "ScenePrivateAnyEnterMenuValuablesSuccess",
+            "ScenePrivateMenuListEnterMenuValuables",
             "ScenePrivateWorldEnterMenuValuables",
             "[JumpBack]SceneAnyEnterWorld"
         ]
@@ -162,6 +188,8 @@
         "pre_delay": 0,
         "post_delay": 0,
         "next": [
+            "ScenePrivateAnyEnterMenuOperationalManualSuccess",
+            "ScenePrivateMenuListEnterMenuOperationalManual",
             "ScenePrivateWorldEnterMenuOperationalManual",
             "[JumpBack]SceneAnyEnterWorld"
         ]
@@ -171,6 +199,8 @@
         "pre_delay": 0,
         "post_delay": 0,
         "next": [
+            "ScenePrivateAnyEnterMenuProtocolPassSuccess",
+            "ScenePrivateMenuListEnterMenuProtocolPass",
             "ScenePrivateWorldEnterMenuProtocolPass",
             "[JumpBack]SceneAnyEnterWorld"
         ]
@@ -180,6 +210,8 @@
         "pre_delay": 0,
         "post_delay": 0,
         "next": [
+            "ScenePrivateAnyEnterMenuFriendsSuccess",
+            "ScenePrivateMenuListEnterMenuFriends",
             "ScenePrivateWorldEnterMenuFriends",
             "[JumpBack]SceneAnyEnterWorld"
         ]
@@ -189,6 +221,8 @@
         "pre_delay": 0,
         "post_delay": 0,
         "next": [
+            "ScenePrivateAnyEnterMenuGearAssemblySuccess",
+            "ScenePrivateMenuListEnterMenuGearAssembly",
             "ScenePrivateWorldFactoryEnterMenuGearAssembly",
             "[JumpBack]SceneEnterWorldFactory"
         ]
@@ -198,6 +232,7 @@
         "pre_delay": 0,
         "post_delay": 0,
         "next": [
+            "ScenePrivateAnyEnterMenuBluePrintSuccess",
             "ScenePrivateWorldFactoryEnterMenuBluePrint",
             "[JumpBack]SceneEnterWorldFactory"
         ]
@@ -207,6 +242,7 @@
         "pre_delay": 0,
         "post_delay": 0,
         "next": [
+            "ScenePrivateAnyEnterMenuEmailSuccess",
             "ScenePrivateWorldEnterMenuEmail",
             "[JumpBack]SceneAnyEnterWorld"
         ]
@@ -216,6 +252,8 @@
         "pre_delay": 0,
         "post_delay": 0,
         "next": [
+            "ScenePrivateAnyEnterMenuBackpackSuccess",
+            "ScenePrivateMenuListEnterMenuBackpack",
             "ScenePrivateWorldEnterMenuBackpack",
             "[JumpBack]SceneAnyEnterWorld"
         ]
@@ -225,6 +263,7 @@
         "pre_delay": 0,
         "post_delay": 0,
         "next": [
+            "ScenePrivateAnyEnterMenuBackpackSuccess",
             "ScenePrivateWorldDijiangEnterMenuBackpackWithDepot",
             "[JumpBack]SceneEnterWorldDijiang"
         ]
@@ -234,6 +273,7 @@
         "pre_delay": 0,
         "post_delay": 0,
         "next": [
+            "ScenePrivateAnyEnterMenuBakerSuccess",
             "ScenePrivateWorldEnterMenuBaker",
             "[JumpBack]SceneAnyEnterWorld"
         ]
@@ -243,6 +283,8 @@
         "pre_delay": 0,
         "post_delay": 0,
         "next": [
+            "ScenePrivateAnyEnterMenuWikiSuccess",
+            "ScenePrivateMenuListEnterMenuWiki",
             "ScenePrivateWorldEnterMenuWiki",
             "[JumpBack]SceneAnyEnterWorld"
         ]
