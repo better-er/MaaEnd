@@ -1,0 +1,14 @@
+{
+    "AutoFightTest": {
+        "next": [
+            "[JumpBack]AutoFight",
+            "AutoFightTest"
+        ]
+    },
+    "AutoFightTest2": {
+        "next": [
+            // "[JumpBack]AutoFightRecognitionMenuOperators",
+            "AutoFightTest2"
+        ]
+    }
+}

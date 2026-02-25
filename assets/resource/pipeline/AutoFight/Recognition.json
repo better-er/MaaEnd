@@ -1,0 +1,246 @@
+{
+    "AutoFightRecognitionCharacterBar": {
+        "doc": "查找左下角角色图标",
+        "recognition": "TemplateMatch",
+        "template": "AutoFight/CharacterBar.png",
+        "roi": [
+            0,
+            -140,
+            360,
+            60
+        ],
+        "green_mask": true
+    },
+    "AutoFightRecognitionEnergyLevel0": {
+        "doc": "能量条空正在恢复，白色 [255, 255, 255]",
+        "recognition": "ColorMatch",
+        "roi": [
+            533,
+            645,
+            70,
+            15
+        ],
+        "lower": [
+            240,
+            240,
+            240
+        ],
+        "upper": [
+            255,
+            255,
+            255
+        ],
+        "count": 10,
+        "connected": true
+    },
+    "AutoFightRecognitionEnergyLevel1": {
+        "doc": "能量条1格，[255, 255, 0] - [255, 220, 0] 交替闪烁, 满了瞬间会闪一下[255, 255, 75]",
+        "recognition": "ColorMatch",
+        "roi": [
+            533,
+            645,
+            70,
+            15
+        ],
+        "lower": [
+            220,
+            190,
+            0
+        ],
+        "upper": [
+            255,
+            255,
+            100
+        ],
+        "count": 100,
+        "connected": true
+    },
+    "AutoFightRecognitionEnergyLevel2": {
+        "doc": "能量条2格，255, 255, 0] - [255, 220, 0] 交替闪烁",
+        "recognition": "ColorMatch",
+        "roi": [
+            600,
+            640,
+            80,
+            20
+        ],
+        "lower": [
+            220,
+            190,
+            0
+        ],
+        "upper": [
+            255,
+            255,
+            100
+        ],
+        "count": 100,
+        "connected": true
+    },
+    "AutoFightRecognitionHasEnemy": {
+        "doc": "判断是否有敌人，找敌人血条 [255, 68, 101]",
+        "recognition": "ColorMatch",
+        "roi": [
+            280,
+            150,
+            750,
+            370
+        ],
+        "lower": [
+            240,
+            40,
+            80
+        ],
+        "upper": [
+            255,
+            80,
+            120
+        ],
+        "count": 100,
+        "connected": true
+    },
+    "AutoFightRecognitionComboUsable": {
+        "doc": "识别连携技是否可用，纯白颜色",
+        "recognition": "ColorMatch",
+        "roi": [
+            28,
+            657,
+            56,
+            4
+        ],
+        "lower": [
+            240,
+            240,
+            240
+        ],
+        "upper": [
+            255,
+            255,
+            255
+        ],
+        "count": 30, //自测50x1~50x3波动
+        "connected": true
+    },
+    "AutoFightRecognitionComboCooldown1": {
+        "doc": "识别连携技冷却中，[166,166,166],",
+        "recognition": "ColorMatch",
+        "roi": [
+            28,
+            657,
+            56,
+            4
+        ],
+        "lower": [
+            150,
+            150,
+            150
+        ],
+        "upper": [
+            180,
+            180,
+            180
+        ],
+        "count": 30,
+        "connected": true
+    },
+    "AutoFightRecognitionComboCooldown2": {
+        "doc": "识别连携技冷却中，背景[9-15, 9-15, 9-15]",
+        "recognition": "ColorMatch",
+        "roi": [
+            28,
+            657,
+            56,
+            4
+        ],
+        "lower": [
+            0,
+            0,
+            0
+        ],
+        "upper": [
+            30,
+            30,
+            30
+        ],
+        "count": 30,
+        "connected": true
+    },
+    "AutoFightRecognitionEndSkill": {
+        "doc": "通过按键判断终结技是否准备好",
+        "recognition": "TemplateMatch",
+        "roi": [
+            1010,
+            535,
+            270,
+            65
+        ],
+        "template": "AutoFight/EndSkill.png",
+        "threshold": 0.7,
+        "green_mask": true
+    },
+    "AutoFightRecognitionFightSkill": {
+        "doc": "识别战技图标",
+        "recognition": "TemplateMatch",
+        "roi": [
+            1010,
+            615,
+            265,
+            20
+        ],
+        "template": "AutoFight/Skill.png",
+        "threshold": 0.4
+    },
+    "AutoFightRecognitionLeftMenuHide": {
+        "doc": "在大世界中，进入战斗状态时左上角菜单会自动隐藏",
+        "recognition": "TemplateMatch",
+        "roi": [
+            0,
+            0,
+            350,
+            100
+        ],
+        "template": "AutoFight/LeftMenuHide.png"
+    },
+    "AutoFightRecognitionFightSpace": {
+        "doc": "识别是否有干员菜单图标",
+        "recognition": "Or",
+        "any_of": [
+            {
+                "recognition": "TemplateMatch",
+                "roi": [
+                    -330,
+                    0,
+                    330,
+                    70
+                ],
+                "template": "AutoFight/MenuOperators.png",
+                "green_mask": true
+            },
+            {
+                "recognition": "TemplateMatch",
+                "roi": [
+                    -200,
+                    0,
+                    200,
+                    200
+                ],
+                "template": [
+                    "SceneManager/WorldMenu.png"
+                ],
+                "green_mask": true
+            }
+        ]
+    },
+    "AutoFightRecognitionComboNotice": {
+        "doc": "识别连携技提示，纯白颜色",
+        "recognition": "TemplateMatch",
+        "threshold": 0.9,
+        "template": "AutoFight/Combo.png",
+        "roi": [
+            750,
+            250,
+            100,
+            100
+        ]
+    }
+}

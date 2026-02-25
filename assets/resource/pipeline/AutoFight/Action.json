@@ -1,0 +1,13 @@
+{
+    "AutoFightActionAttack": {
+        "desc": "攻击",
+        "recognition": "TemplateMatch",
+        "template": "AutoFight/CharacterBar.png",
+        "roi": [
+            0,
+            -140,
+            360,
+            60
+        ]
+    }
+}

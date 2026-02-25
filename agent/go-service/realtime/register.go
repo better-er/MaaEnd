@@ -11,7 +11,7 @@ var (
 	_ maa.CustomActionRunner      = &RealTimeAutoFightEndSkillAction{}
 )
 
-// Register registers all custom recognition and action components for realtime package
+// 后续和AutoFight通用模块合并
 func Register() {
 	maa.AgentServerRegisterCustomRecognition("RealTimeAutoFightEntryRecognition", &RealTimeAutoFightEntryRecognition{})
 	maa.AgentServerRegisterCustomRecognition("RealTimeAutoFightExitRecognition", &RealTimeAutoFightExitRecognition{})
